@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="Igor Talic">
+
+    <script src="static/assets/js/jquery.min.js"></script>
+    <script src="static/assets/js/handlebars.js"></script>
+    <script src="static/bootstrap/js/bootstrap.js"></script>
+
+    <title>WishList</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/assets/css/jumbotron-narrow.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header clearfix">
+          <div class="col-md-6">
+            <h1 class="text-muted">WishList</h1>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group has-primary has-feedback" style="margin-top: 24px;">
+                <input placeholder="Search" type="text" class="form-control" id="search" aria-describedby="inputSuccess2Status">
+              <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+            </div>  
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button class="btn btn-xs btn-success" style="margin-right:5px;" data-toggle="modal" data-target="#new-movie-modal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Movie</button>
+        </div>
+      </div>
+      <div class="row marketing">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <td>#</td>
+                <td>Title</td>
+                <td>Date</td>
+                <td>Options</td>
+              </tr>
+            </thead>
+            <tbody id="append-movies">
+            </tbody>
+        </table>
+      </div>
+
+      <footer class="footer">
+        <p>© 2016 Agressoft.</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="new-movie-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">New Movie</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group has-primary has-feedback">
+              <label for="movie-title">Movie name: </label>
+              <input type="text" class="form-control" id="movie-title">
+              <label for="movie-link">Movie link: </label>
+              <input type="text" class="form-control" id="movie-link">
+            </div> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id="add-movie" type="button" class="btn btn-primary">Add movie</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script id="movies" type="text/x-handlebars-template">
+      {{#rows}} 
+      <tr> 
+          <td>{{id}}</td>
+          <td>{{title}}</td>
+          <td>{{date}}</td>
+          <td id="{{id}}">
+            <button class="btn btn-xs btn-danger delete-movie" style="margin-right:5px;"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+            <a href="/watch/{{id}}" class="btn btn-xs btn-primary watch-movie"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a>
+          </td>
+      </tr> 
+      {{/rows}}
+    </script>
+    <script src="static/app/main.js"></script>
+</body>
+</html>
